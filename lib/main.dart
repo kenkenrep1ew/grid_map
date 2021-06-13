@@ -73,6 +73,7 @@ class _GridMapState extends State<GridMap> {
               Marker(
                 width: 80.0,
                 height: 80.0,
+                //comment
                 point: LatLng(40.00, 135.00),
                 builder: (ctx) => new Container(
                   child: new FlutterLogo(),
