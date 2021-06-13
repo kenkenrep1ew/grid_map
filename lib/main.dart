@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map/src/map/map.dart';
+// import 'package:flutter_map/src/map/map.dart';
 import 'package:lat_lon_grid_plugin/lat_lon_grid_plugin.dart';
 import 'package:latlong/latlong.dart';
-import 'my_map_plugin.dart';
+import 'MGRS_grid_plugin.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -44,7 +44,7 @@ class _GridMapState extends State<GridMap> {
           center: LatLng(35.00, 135.00),
           zoom: 5,
           plugins: [
-            MyMapPlugin(),
+            MGRSGridPlugin(),
             MapPluginLatLonGrid(),
           ],
         ),
@@ -67,7 +67,7 @@ class _GridMapState extends State<GridMap> {
             offsetLonTextBottom: 20.0,
             offsetLatTextLeft: 20.0,
           ),
-          MyMapPluginOption(),
+          MGRSGridPluginOption(),
           MarkerLayerOptions(
             markers: [
               Marker(
