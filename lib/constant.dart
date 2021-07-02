@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:latlong/latlong.dart';
-
 final List<String> bandCharacters = [
   'C',
   'D',
@@ -24,6 +20,7 @@ final List<String> bandCharacters = [
   'W',
   'X',
 ];
+
 const PT_54SWB =
     '{"type":"Feature","id":"PT_54SWB0000","geometry":{"type":"Point","coordinates":[140.99999999999997,32.53735523621132,0]},"properties":{}}';
 const PT_54SWC =
@@ -181,3 +178,241 @@ const PT_54TYR =
 
 const PT_54STG =
     '{"type":"Feature","id":"PT_54STG0000","geometry":{"type":"Point","coordinates":[137.62892208473906,36.99831450836676,0]},"properties":{}}';
+
+const PT_53SNS =
+    '{"type":"Feature","id":"PT_53SNS0000","geometry":{"type":"Point","coordinates":[135.0,32.53735523621132,0]},"properties":{}}';
+const PT_53SNT =
+    '{"type":"Feature","id":"PT_53SNT0000","geometry":{"type":"Point","coordinates":[135.0,33.43939467250958,0]},"properties":{}}';
+const PT_53SNU =
+    '{"type":"Feature","id":"PT_53SNU0000","geometry":{"type":"Point","coordinates":[135.0,34.34130272267963,0]},"properties":{}}';
+const PT_53SNV =
+    '{"type":"Feature","id":"PT_53SNV0000","geometry":{"type":"Point","coordinates":[135.0,35.24307771200426,0]},"properties":{}}';
+const PT_53SNA =
+    '{"type":"Feature","id":"PT_53SNA0000","geometry":{"type":"Point","coordinates":[135.0,36.144718098817755,0]},"properties":{}}';
+const PT_53SNB =
+    '{"type":"Feature","id":"PT_53SNB0000","geometry":{"type":"Point","coordinates":[135.0,37.04622247590853,0]},"properties":{}}';
+const PT_53SNC =
+    '{"type":"Feature","id":"PT_53SNC0000","geometry":{"type":"Point","coordinates":[135.0,37.94758957178304,0]},"properties":{}}';
+const PT_53SND =
+    '{"type":"Feature","id":"PT_53SND0000","geometry":{"type":"Point","coordinates":[135.0,38.848818251789965,0]},"properties":{}}';
+const PT_53SNE =
+    '{"type":"Feature","id":"PT_53SNE0000","geometry":{"type":"Point","coordinates":[135.0,39.7499075191044,0]},"properties":{}}';
+const PT_53SMS =
+    '{"type":"Feature","id":"PT_53SMS0000","geometry":{"type":"Point","coordinates":[133.93512013579462,32.53284662620779,0]},"properties":{}}';
+const PT_53SMT =
+    '{"type":"Feature","id":"PT_53SMT0000","geometry":{"type":"Point","coordinates":[133.92423596142197,33.43472882538433,0]},"properties":{}}';
+const PT_53SMU =
+    '{"type":"Feature","id":"PT_53SMU0000","geometry":{"type":"Point","coordinates":[133.91285616051852,34.33647641476016,0]},"properties":{}}';
+const PT_53SMV =
+    '{"type":"Feature","id":"PT_53SMV0000","geometry":{"type":"Point","coordinates":[133.9009591876285,35.23808753540773,0]},"properties":{}}';
+const PT_53SMA =
+    '{"type":"Feature","id":"PT_53SMA0000","geometry":{"type":"Point","coordinates":[133.8885219677738,36.139560449860255,0]},"properties":{}}';
+const PT_53SMB =
+    '{"type":"Feature","id":"PT_53SMB0000","geometry":{"type":"Point","coordinates":[133.87551977006,37.04089354251013,0]},"properties":{}}';
+const PT_53SMC =
+    '{"type":"Feature","id":"PT_53SMC0000","geometry":{"type":"Point","coordinates":[133.86192606806833,37.942085319765845,0]},"properties":{}}';
+const PT_53SMD =
+    '{"type":"Feature","id":"PT_53SMD0000","geometry":{"type":"Point","coordinates":[133.84771238541816,38.84313440995389,0]},"properties":{}}';
+const PT_53SME =
+    '{"type":"Feature","id":"PT_53SME0000","geometry":{"type":"Point","coordinates":[133.83284812465422,39.74403956295087,0]},"properties":{}}';
+const PT_53SLS =
+    '{"type":"Feature","id":"PT_53SLS0000","geometry":{"type":"Point","coordinates":[132.870715549372,32.519327665049126,0]},"properties":{}}';
+const PT_53SLT =
+    '{"type":"Feature","id":"PT_53SLT0000","geometry":{"type":"Point","coordinates":[132.84896731384566,33.420738490322194,0]},"properties":{}}';
+const PT_53SLU =
+    '{"type":"Feature","id":"PT_53SLU0000","geometry":{"type":"Point","coordinates":[132.82622923842956,34.322005052192544,0]},"properties":{}}';
+const PT_53SLV =
+    '{"type":"Feature","id":"PT_53SLV0000","geometry":{"type":"Point","coordinates":[132.8024583466012,35.223124940555316,0]},"properties":{}}';
+const PT_53SLA =
+    '{"type":"Feature","id":"PT_53SLA0000","geometry":{"type":"Point","coordinates":[132.77760861456295,36.12409583213701,0]},"properties":{}}';
+const PT_53SLB =
+    '{"type":"Feature","id":"PT_53SLB0000","geometry":{"type":"Point","coordinates":[132.7516307198657,37.024915487898205,0]},"properties":{}}';
+const PT_53SLC =
+    '{"type":"Feature","id":"PT_53SLC0000","geometry":{"type":"Point","coordinates":[132.72447176380268,37.925581749889,0]},"properties":{}}';
+const PT_53SLD =
+    '{"type":"Feature","id":"PT_53SLD0000","geometry":{"type":"Point","coordinates":[132.69607496437433,38.82609253750627,0]},"properties":{}}';
+const PT_53SLE =
+    '{"type":"Feature","id":"PT_53SLE0000","geometry":{"type":"Point","coordinates":[132.66637931617007,39.72644584309502,0]},"properties":{}}';
+const PT_53SPS =
+    '{"type":"Feature","id":"PT_53SPS0000","geometry":{"type":"Point","coordinates":[136.06487986420538,32.53284662620779,0]},"properties":{}}';
+const PT_53SPT =
+    '{"type":"Feature","id":"PT_53SPT0000","geometry":{"type":"Point","coordinates":[136.07576403857803,33.43472882538433,0]},"properties":{}}';
+const PT_53SPU =
+    '{"type":"Feature","id":"PT_53SPU0000","geometry":{"type":"Point","coordinates":[136.08714383948148,34.33647641476016,0]},"properties":{}}';
+const PT_53SPV =
+    '{"type":"Feature","id":"PT_53SPV0000","geometry":{"type":"Point","coordinates":[136.0990408123715,35.23808753540773,0]},"properties":{}}';
+const PT_53SPA =
+    '{"type":"Feature","id":"PT_53SPA0000","geometry":{"type":"Point","coordinates":[136.1114780322262,36.139560449860255,0]},"properties":{}}';
+const PT_53SPB =
+    '{"type":"Feature","id":"PT_53SPB0000","geometry":{"type":"Point","coordinates":[136.12448022994,37.04089354251013,0]},"properties":{}}';
+const PT_53SPC =
+    '{"type":"Feature","id":"PT_53SPC0000","geometry":{"type":"Point","coordinates":[136.13807393193167,37.942085319765845,0]},"properties":{}}';
+const PT_53SPD =
+    '{"type":"Feature","id":"PT_53SPD0000","geometry":{"type":"Point","coordinates":[136.15228761458184,38.84313440995389,0]},"properties":{}}';
+const PT_53SPE =
+    '{"type":"Feature","id":"PT_53SPE0000","geometry":{"type":"Point","coordinates":[136.16715187534578,39.74403956295087,0]},"properties":{}}';
+const PT_53SQS =
+    '{"type":"Feature","id":"PT_53SQS0000","geometry":{"type":"Point","coordinates":[137.129284450628,32.519327665049126,0]},"properties":{}}';
+const PT_53SQT =
+    '{"type":"Feature","id":"PT_53SQT0000","geometry":{"type":"Point","coordinates":[137.15103268615434,33.420738490322194,0]},"properties":{}}';
+const PT_53SQU =
+    '{"type":"Feature","id":"PT_53SQU0000","geometry":{"type":"Point","coordinates":[137.17377076157044,34.322005052192544,0]},"properties":{}}';
+const PT_53SQV =
+    '{"type":"Feature","id":"PT_53SQV0000","geometry":{"type":"Point","coordinates":[137.1975416533988,35.223124940555316,0]},"properties":{}}';
+const PT_53SQA =
+    '{"type":"Feature","id":"PT_53SQA0000","geometry":{"type":"Point","coordinates":[137.22239138543705,36.12409583213701,0]},"properties":{}}';
+const PT_53SQB =
+    '{"type":"Feature","id":"PT_53SQB0000","geometry":{"type":"Point","coordinates":[137.2483692801343,37.024915487898205,0]},"properties":{}}';
+const PT_53SQC =
+    '{"type":"Feature","id":"PT_53SQC0000","geometry":{"type":"Point","coordinates":[137.27552823619732,37.925581749889,0]},"properties":{}}';
+const PT_53SQD =
+    '{"type":"Feature","id":"PT_53SQD0000","geometry":{"type":"Point","coordinates":[137.30392503562567,38.82609253750627,0]},"properties":{}}';
+const PT_53SQE =
+    '{"type":"Feature","id":"PT_53SQE0000","geometry":{"type":"Point","coordinates":[137.33362068382993,39.72644584309502,0]},"properties":{}}';
+const PT_53SRS =
+    '{"type":"Feature","id":"PT_53SRS0000","geometry":{"type":"Point","coordinates":[138.1927397892305,32.496818930876486,0]},"properties":{}}';
+const PT_53SRT =
+    '{"type":"Feature","id":"PT_53SRT0000","geometry":{"type":"Point","coordinates":[138.2253119631503,33.39744525583304,0]},"properties":{}}';
+const PT_53SRU =
+    '{"type":"Feature","id":"PT_53SRU0000","geometry":{"type":"Point","coordinates":[138.2593653744795,34.297911285927256,0]},"properties":{}}';
+const PT_53SRV =
+    '{"type":"Feature","id":"PT_53SRV0000","geometry":{"type":"Point","coordinates":[138.29496420326598,35.19821369725118,0]},"properties":{}}';
+const PT_53SRA =
+    '{"type":"Feature","id":"PT_53SRA0000","geometry":{"type":"Point","coordinates":[138.3321771712169,36.09834919548573,0]},"properties":{}}';
+const PT_53SRB =
+    '{"type":"Feature","id":"PT_53SRB0000","geometry":{"type":"Point","coordinates":[138.3710779152609,36.99831450836676,0]},"properties":{}}';
+const PT_53SRC =
+    '{"type":"Feature","id":"PT_53SRC0000","geometry":{"type":"Point","coordinates":[138.41174539996476,37.89810637710265,0]},"properties":{}}';
+const PT_53SRD =
+    '{"type":"Feature","id":"PT_53SRD0000","geometry":{"type":"Point","coordinates":[138.45426437352364,38.797721546630704,0]},"properties":{}}';
+const PT_53SRE =
+    '{"type":"Feature","id":"PT_53SRE0000","geometry":{"type":"Point","coordinates":[138.49872587271415,39.697156754584384,0]},"properties":{}}';
+
+const PT_52REN =
+    '{"type":"Feature","id":"PT_52REN0000","geometry":{"type":"Point","coordinates":[129,24.41342790722427,0]},"properties":{}}';
+const PT_52REP =
+    '{"type":"Feature","id":"PT_52REP0000","geometry":{"type":"Point","coordinates":[129,25.31655337266284,0]},"properties":{}}';
+const PT_52REQ =
+    '{"type":"Feature","id":"PT_52REQ0000","geometry":{"type":"Point","coordinates":[129,26.21956821301369,0]},"properties":{}}';
+const PT_52RER =
+    '{"type":"Feature","id":"PT_52RER0000","geometry":{"type":"Point","coordinates":[129,27.12246964155112,0]},"properties":{}}';
+const PT_52RES =
+    '{"type":"Feature","id":"PT_52RES0000","geometry":{"type":"Point","coordinates":[129,28.02525498593124,0]},"properties":{}}';
+const PT_52RET =
+    '{"type":"Feature","id":"PT_52RET0000","geometry":{"type":"Point","coordinates":[129,28.927921690784174,0]},"properties":{}}';
+const PT_52REU =
+    '{"type":"Feature","id":"PT_52REU0000","geometry":{"type":"Point","coordinates":[129,29.83046732018134,0]},"properties":{}}';
+const PT_52REV =
+    '{"type":"Feature","id":"PT_52REV0000","geometry":{"type":"Point","coordinates":[129,30.732889559975703,0]},"properties":{}}';
+const PT_52REA =
+    '{"type":"Feature","id":"PT_52REA0000","geometry":{"type":"Point","coordinates":[129,31.635186220012894,0]},"properties":{}}';
+const PT_52RDN =
+    '{"type":"Feature","id":"PT_52RDN0000","geometry":{"type":"Point","coordinates":[128.0137034959244,24.41021507130252,0]},"properties":{}}';
+const PT_52RDP =
+    '{"type":"Feature","id":"PT_52RDP0000","geometry":{"type":"Point","coordinates":[128.0065135026296,25.313205541416202,0]},"properties":{}}';
+const PT_52RDQ =
+    '{"type":"Feature","id":"PT_52RDQ0000","geometry":{"type":"Point","coordinates":[127.99896884026226,26.216083426247135,0]},"properties":{}}';
+const PT_52RDR =
+    '{"type":"Feature","id":"PT_52RDR0000","geometry":{"type":"Point","coordinates":[127.991057638075,27.118845826337466,0]},"properties":{}}';
+const PT_52RDS =
+    '{"type":"Feature","id":"PT_52RDS0000","geometry":{"type":"Point","coordinates":[127.98276722485416,28.02148995090177,0]},"properties":{}}';
+const PT_52RDT =
+    '{"type":"Feature","id":"PT_52RDT0000","geometry":{"type":"Point","coordinates":[127.97408407427572,28.9240131199681,0]},"properties":{}}';
+const PT_52RDU =
+    '{"type":"Feature","id":"PT_52RDU0000","geometry":{"type":"Point","coordinates":[127.96499374517163,29.826412766355407,0]},"properties":{}}';
+const PT_52RDV =
+    '{"type":"Feature","id":"PT_52RDV0000","geometry":{"type":"Point","coordinates":[127.95548081617733,30.72868643748095,0]},"properties":{}}';
+const PT_52RDA =
+    '{"type":"Feature","id":"PT_52RDA0000","geometry":{"type":"Point","coordinates":[127.94552881416524,31.630831796991053,0]},"properties":{}}';
+const PT_52RCN =
+    '{"type":"Feature","id":"PT_52RCN0000","geometry":{"type":"Point","coordinates":[127.02775042328439,24.4005809930176,0]},"properties":{}}';
+const PT_52RCP =
+    '{"type":"Feature","id":"PT_52RCP0000","geometry":{"type":"Point","coordinates":[127.01338154937433,25.303166705985685,0]},"properties":{}}';
+const PT_52RCQ =
+    '{"type":"Feature","id":"PT_52RCQ0000","geometry":{"type":"Point","coordinates":[126.9983040870611,26.205633961848626,0]},"properties":{}}';
+const PT_52RCR =
+    '{"type":"Feature","id":"PT_52RCR0000","geometry":{"type":"Point","coordinates":[126.98249434480591,27.107979523627066,0]},"properties":{}}';
+const PT_52RCS =
+    '{"type":"Feature","id":"PT_52RCS0000","geometry":{"type":"Point","coordinates":[126.96592703474725,28.010200245941192,0]},"properties":{}}';
+const PT_52RCT =
+    '{"type":"Feature","id":"PT_52RCT0000","geometry":{"type":"Point","coordinates":[126.94857516388277,28.912293075804136,0]},"properties":{}}';
+const PT_52RCU =
+    '{"type":"Feature","id":"PT_52RCU0000","geometry":{"type":"Point","coordinates":[126.93040991513004,29.81425505313627,0]},"properties":{}}';
+const PT_52RCV =
+    '{"type":"Feature","id":"PT_52RCV0000","geometry":{"type":"Point","coordinates":[126.91140051721486,30.71608331098153,0]},"properties":{}}';
+const PT_52RCA =
+    '{"type":"Feature","id":"PT_52RCA0000","geometry":{"type":"Point","coordinates":[126.89151410220674,31.617775075405053,0]},"properties":{}}';
+const PT_52RFN =
+    '{"type":"Feature","id":"PT_52RFN0000","geometry":{"type":"Point","coordinates":[129.98629650407557,24.41021507130252,0]},"properties":{}}';
+const PT_52RFP =
+    '{"type":"Feature","id":"PT_52RFP0000","geometry":{"type":"Point","coordinates":[129.99348649737038,25.313205541416202,0]},"properties":{}}';
+const PT_52RFQ =
+    '{"type":"Feature","id":"PT_52RFQ0000","geometry":{"type":"Point","coordinates":[130.00103115973772,26.216083426247135,0]},"properties":{}}';
+const PT_52RFR =
+    '{"type":"Feature","id":"PT_52RFR0000","geometry":{"type":"Point","coordinates":[130.008942361925,27.118845826337466,0]},"properties":{}}';
+const PT_52RFS =
+    '{"type":"Feature","id":"PT_52RFS0000","geometry":{"type":"Point","coordinates":[130.01723277514583,28.02148995090177,0]},"properties":{}}';
+const PT_52RFT =
+    '{"type":"Feature","id":"PT_52RFT0000","geometry":{"type":"Point","coordinates":[130.02591592572426,28.9240131199681,0]},"properties":{}}';
+const PT_52RFU =
+    '{"type":"Feature","id":"PT_52RFU0000","geometry":{"type":"Point","coordinates":[130.03500625482835,29.826412766355407,0]},"properties":{}}';
+const PT_52RFV =
+    '{"type":"Feature","id":"PT_52RFV0000","geometry":{"type":"Point","coordinates":[130.04451918382267,30.72868643748095,0]},"properties":{}}';
+const PT_52RFA =
+    '{"type":"Feature","id":"PT_52RFA0000","geometry":{"type":"Point","coordinates":[130.05447118583476,31.630831796991053,0]},"properties":{}}';
+const PT_52RGN =
+    '{"type":"Feature","id":"PT_52RGN0000","geometry":{"type":"Point","coordinates":[130.9722495767156,24.4005809930176,0]},"properties":{}}';
+const PT_52RGP =
+    '{"type":"Feature","id":"PT_52RGP0000","geometry":{"type":"Point","coordinates":[130.98661845062566,25.303166705985685,0]},"properties":{}}';
+const PT_52RGQ =
+    '{"type":"Feature","id":"PT_52RGQ0000","geometry":{"type":"Point","coordinates":[131.00169591293889,26.205633961848626,0]},"properties":{}}';
+const PT_52RGR =
+    '{"type":"Feature","id":"PT_52RGR0000","geometry":{"type":"Point","coordinates":[131.01750565519407,27.107979523627066,0]},"properties":{}}';
+const PT_52RGS =
+    '{"type":"Feature","id":"PT_52RGS0000","geometry":{"type":"Point","coordinates":[131.03407296525273,28.010200245941192,0]},"properties":{}}';
+const PT_52RGT =
+    '{"type":"Feature","id":"PT_52RGT0000","geometry":{"type":"Point","coordinates":[131.0514248361172,28.912293075804136,0]},"properties":{}}';
+const PT_52RGU =
+    '{"type":"Feature","id":"PT_52RGU0000","geometry":{"type":"Point","coordinates":[131.06959008486993,29.81425505313627,0]},"properties":{}}';
+const PT_52RGV =
+    '{"type":"Feature","id":"PT_52RGV0000","geometry":{"type":"Point","coordinates":[131.08859948278513,30.71608331098153,0]},"properties":{}}';
+const PT_52RGA =
+    '{"type":"Feature","id":"PT_52RGA0000","geometry":{"type":"Point","coordinates":[131.10848589779323,31.617775075405053,0]},"properties":{}}';
+const PT_52RHN =
+    '{"type":"Feature","id":"PT_52RHN0000","geometry":{"type":"Point","coordinates":[131.95751648982926,24.38453894504471,0]},"properties":{}}';
+const PT_52RHP =
+    '{"type":"Feature","id":"PT_52RHP0000","geometry":{"type":"Point","coordinates":[131.9790420646992,25.28645082448835,0]},"properties":{}}';
+const PT_52RHQ =
+    '{"type":"Feature","id":"PT_52RHQ0000","geometry":{"type":"Point","coordinates":[132.0016286520019,26.188234489594915,0]},"properties":{}}';
+const PT_52RHR =
+    '{"type":"Feature","id":"PT_52RHR0000","geometry":{"type":"Point","coordinates":[132.02531166457376,27.08988614309201,0]},"properties":{}}';
+const PT_52RHS =
+    '{"type":"Feature","id":"PT_52RHS0000","geometry":{"type":"Point","coordinates":[132.050128898262,27.99140205103531,0]},"properties":{}}';
+const PT_52RHT =
+    '{"type":"Feature","id":"PT_52RHT0000","geometry":{"type":"Point","coordinates":[132.07612069398246,28.89277854137519,0]},"properties":{}}';
+const PT_52RHU =
+    '{"type":"Feature","id":"PT_52RHU0000","geometry":{"type":"Point","coordinates":[132.10333011481677,29.794012002054107,0]},"properties":{}}';
+const PT_52RHV =
+    '{"type":"Feature","id":"PT_52RHV0000","geometry":{"type":"Point","coordinates":[132.13180313970506,30.695098878595182,0]},"properties":{}}';
+const PT_52RHA =
+    '{"type":"Feature","id":"PT_52RHA0000","geometry":{"type":"Point","coordinates":[132.16158887548298,31.59603567113855,0]},"properties":{}}';
+const PT_52SEB =
+    '{"type":"Feature","id":"PT_52SEB0000","geometry":{"type":"Point","coordinates":[129,32.53735523621132,0]},"properties":{}}';
+const PT_52SEC =
+    '{"type":"Feature","id":"PT_52SEC0000","geometry":{"type":"Point","coordinates":[129,33.43939467250958,0]},"properties":{}}';
+const PT_52SED =
+    '{"type":"Feature","id":"PT_52SED0000","geometry":{"type":"Point","coordinates":[129,34.34130272267963,0]},"properties":{}}';
+const PT_52SEE =
+    '{"type":"Feature","id":"PT_52SEE0000","geometry":{"type":"Point","coordinates":[129,35.24307771200426,0]},"properties":{}}';
+const PT_52SEF =
+    '{"type":"Feature","id":"PT_52SEF0000","geometry":{"type":"Point","coordinates":[129,36.144718098817755,0]},"properties":{}}';
+const PT_52SEG =
+    '{"type":"Feature","id":"PT_52SEG0000","geometry":{"type":"Point","coordinates":[129,37.04622247590853,0]},"properties":{}}';
+const PT_52SEH =
+    '{"type":"Feature","id":"PT_52SEH0000","geometry":{"type":"Point","coordinates":[129,37.94758957178304,0]},"properties":{}}';
+const PT_52SEJ =
+    '{"type":"Feature","id":"PT_52SEJ0000","geometry":{"type":"Point","coordinates":[129,38.848818251789965,0]},"properties":{}}';
+const PT_52SEK =
+    '{"type":"Feature","id":"PT_52SEK0000","geometry":{"type":"Point","coordinates":[129,39.7499075191044,0]},"properties":{}}';
+const PT_52SDB =
+    '{"type":"Feature","id":"PT_52SDB0000","geometry":{"type":"Point","coordinates":[127.93512013579462,32.53284662620779,0]},"properties":{}}';
