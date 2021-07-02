@@ -4,7 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:grid_map/utm_zone.dart';
 import 'package:latlong/latlong.dart';
 import 'package:flutter_map/plugin_api.dart';
-
+import 'dart:math';
 import 'const_points.dart';
 import 'constant.dart';
 import 'lat_band.dart';
@@ -72,11 +72,34 @@ class _MyPainter extends CustomPainter {
     LatBand bandU = LatBand('U');
     bandU.draw(canvas, mapState, size);
 
+    zone52.standardPoints = pointsInZone52;
+    zone52.drawFrameByStandardPoints(canvas, mapState, size);
+
     zone53.standardPoints = pointsInZone53;
     zone53.drawFrameByStandardPoints(canvas, mapState, size);
 
     zone54.standardPoints = pointsInZone54;
     zone54.drawFrameByStandardPoints(canvas, mapState, size);
+
+    print(mapState.zoom);
+
+    // p3 p4
+    //
+    // p1 p2
+
+    // MyPoint p1 = MyPoint(PT_53SMS);
+    // p1.draw(canvas, mapState, size);
+    //
+    // MyPoint p2 = MyPoint(PT_53SNS);
+    // p2.draw(canvas, mapState, size);
+    //
+    // MyPoint p3 = MyPoint(PT_53SMT);
+    // p3.draw(canvas, mapState, size);
+    //
+    // MyPoint p4 = MyPoint(PT_53SNT);
+    // p4.draw(canvas, mapState, size);
+
+    // print("p1:$p1 p2:$p2");
   }
 
   @override

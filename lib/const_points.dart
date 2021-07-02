@@ -1,44 +1,183 @@
 import 'my_point.dart';
 import 'constant.dart';
 
-List<List<MyPoint>> pointsInZone52 = [
-  [],
+List<MyPoint> pointsOnLine52RE = [
+  MyPoint(PT_52REN),
+  MyPoint(PT_52REP),
+  MyPoint(PT_52REQ),
+  MyPoint(PT_52RER),
+  MyPoint(PT_52RES),
+  MyPoint(PT_52RET),
+  MyPoint(PT_52REU),
+  MyPoint(PT_52REV),
+  MyPoint(PT_52REA),
 ];
-
+List<MyPoint> pointsOnLine52RD = [
+  MyPoint(PT_52RDN),
+  MyPoint(PT_52RDP),
+  MyPoint(PT_52RDQ),
+  MyPoint(PT_52RDR),
+  MyPoint(PT_52RDS),
+  MyPoint(PT_52RDT),
+  MyPoint(PT_52RDU),
+  MyPoint(PT_52RDV),
+  MyPoint(PT_52RDA),
+];
+List<MyPoint> pointsOnLine52RC = [
+  MyPoint(PT_52RCN),
+  MyPoint(PT_52RCP),
+  MyPoint(PT_52RCQ),
+  MyPoint(PT_52RCR),
+  MyPoint(PT_52RCS),
+  MyPoint(PT_52RCT),
+  MyPoint(PT_52RCU),
+  MyPoint(PT_52RCV),
+  MyPoint(PT_52RCA)
+];
+List<MyPoint> pointsOnLine52RF = [
+  MyPoint(PT_52RFN),
+  MyPoint(PT_52RFP),
+  MyPoint(PT_52RFQ),
+  MyPoint(PT_52RFR),
+  MyPoint(PT_52RFS),
+  MyPoint(PT_52RFT),
+  MyPoint(PT_52RFU),
+  MyPoint(PT_52RFV),
+  MyPoint(PT_52RFA)
+];
+List<MyPoint> pointsOnLine52RG = [
+  MyPoint(PT_52RGN),
+  MyPoint(PT_52RGP),
+  MyPoint(PT_52RGQ),
+  MyPoint(PT_52RGR),
+  MyPoint(PT_52RGS),
+  MyPoint(PT_52RGT),
+  MyPoint(PT_52RGU),
+  MyPoint(PT_52RGV),
+  MyPoint(PT_52RGA)
+];
+List<MyPoint> pointsOnLine52RH = [
+  MyPoint(PT_52RHN),
+  MyPoint(PT_52RHP),
+  MyPoint(PT_52RHQ),
+  MyPoint(PT_52RHR),
+  MyPoint(PT_52RHS),
+  MyPoint(PT_52RHT),
+  MyPoint(PT_52RHU),
+  MyPoint(PT_52RHV),
+  MyPoint(PT_52RHA)
+];
+List<MyPoint> pointsOnLine52SE = [
+  MyPoint(PT_52SEB),
+  MyPoint(PT_52SEC),
+  MyPoint(PT_52SED),
+  MyPoint(PT_52SEE),
+  MyPoint(PT_52SEF),
+  MyPoint(PT_52SEG),
+  MyPoint(PT_52SEH),
+  MyPoint(PT_52SEJ),
+  MyPoint(PT_52SEK),
+];
+List<MyPoint> pointsOnLine52SD = [
+  MyPoint(PT_52SDB),
+  MyPoint(PT_52SDC),
+  MyPoint(PT_52SDD),
+  MyPoint(PT_52SDE),
+  MyPoint(PT_52SDF),
+  MyPoint(PT_52SDG),
+  MyPoint(PT_52SDH),
+  MyPoint(PT_52SDJ),
+  MyPoint(PT_52SDK),
+];
+List<MyPoint> pointsOnLine52SC = [
+  MyPoint(PT_52SCB),
+  MyPoint(PT_52SCC),
+  MyPoint(PT_52SCD),
+  MyPoint(PT_52SCE),
+  MyPoint(PT_52SCF),
+  MyPoint(PT_52SCG),
+  MyPoint(PT_52SCH),
+  MyPoint(PT_52SCJ),
+  MyPoint(PT_52SCK)
+];
+List<MyPoint> pointsOnLine52SF = [
+  MyPoint(PT_52SFB),
+  MyPoint(PT_52SFC),
+  MyPoint(PT_52SFD),
+  MyPoint(PT_52SFE),
+  MyPoint(PT_52SFF),
+  MyPoint(PT_52SFG),
+  MyPoint(PT_52SFH),
+  MyPoint(PT_52SFJ),
+  MyPoint(PT_52SFK)
+];
+List<MyPoint> pointsOnLine52SG = [
+  MyPoint(PT_52SGB),
+  MyPoint(PT_52SGC),
+  MyPoint(PT_52SGD),
+  MyPoint(PT_52SGE),
+  MyPoint(PT_52SGF),
+  MyPoint(PT_52SGG),
+  MyPoint(PT_52SGH),
+  MyPoint(PT_52SGJ),
+  MyPoint(PT_52SGK)
+];
+List<MyPoint> pointsOnLine52SH = [
+  MyPoint(PT_52SHB),
+  MyPoint(PT_52SHC),
+  MyPoint(PT_52SHD),
+  MyPoint(PT_52SHE),
+  MyPoint(PT_52SHF),
+  MyPoint(PT_52SHG),
+  MyPoint(PT_52SHH),
+  MyPoint(PT_52SHJ),
+  MyPoint(PT_52SHK)
+];
+List<List<MyPoint>> pointsInZone52 = [
+  pointsOnLine52RC + pointsOnLine52SC,
+  pointsOnLine52RD + pointsOnLine52SD,
+  pointsOnLine52RE + pointsOnLine52SE,
+  pointsOnLine52RF + pointsOnLine52SF,
+  pointsOnLine52RG + pointsOnLine52SG,
+  pointsOnLine52RH + pointsOnLine52SH,
+];
+List<MyPoint> pointsOnLine53SL = [
+  MyPoint(PT_53SLS),
+  MyPoint(PT_53SLT),
+  MyPoint(PT_53SLU),
+  MyPoint(PT_53SLV),
+  MyPoint(PT_53SLA),
+  MyPoint(PT_53SLB),
+  MyPoint(PT_53SLC),
+  MyPoint(PT_53SLD),
+  MyPoint(PT_53SLE),
+];
+List<MyPoint> pointsOnLine53SN = [
+  MyPoint(PT_53SNS),
+  MyPoint(PT_53SNT),
+  MyPoint(PT_53SNU),
+  MyPoint(PT_53SNV),
+  MyPoint(PT_53SNA),
+  MyPoint(PT_53SNB),
+  MyPoint(PT_53SNC),
+  MyPoint(PT_53SND),
+  MyPoint(PT_53SNE),
+];
+List<MyPoint> pointsOnLine53SM = [
+  MyPoint(PT_53SMS),
+  MyPoint(PT_53SMT),
+  MyPoint(PT_53SMU),
+  MyPoint(PT_53SMV),
+  MyPoint(PT_53SMA),
+  MyPoint(PT_53SMB),
+  MyPoint(PT_53SMC),
+  MyPoint(PT_53SMD),
+  MyPoint(PT_53SME),
+];
 List<List<MyPoint>> pointsInZone53 = [
-  [
-    MyPoint(PT_53SLS),
-    MyPoint(PT_53SLT),
-    MyPoint(PT_53SLU),
-    MyPoint(PT_53SLV),
-    MyPoint(PT_53SLA),
-    MyPoint(PT_53SLB),
-    MyPoint(PT_53SLC),
-    MyPoint(PT_53SLD),
-    MyPoint(PT_53SLE),
-  ],
-  [
-    MyPoint(PT_53SNS),
-    MyPoint(PT_53SNT),
-    MyPoint(PT_53SNU),
-    MyPoint(PT_53SNV),
-    MyPoint(PT_53SNA),
-    MyPoint(PT_53SNB),
-    MyPoint(PT_53SNC),
-    MyPoint(PT_53SND),
-    MyPoint(PT_53SNE),
-  ],
-  [
-    MyPoint(PT_53SMS),
-    MyPoint(PT_53SMT),
-    MyPoint(PT_53SMU),
-    MyPoint(PT_53SMV),
-    MyPoint(PT_53SMA),
-    MyPoint(PT_53SMB),
-    MyPoint(PT_53SMC),
-    MyPoint(PT_53SMD),
-    MyPoint(PT_53SME),
-  ],
+  pointsOnLine53SL,
+  pointsOnLine53SM,
+  pointsOnLine53SN,
   [
     MyPoint(PT_53SPS),
     MyPoint(PT_53SPT),

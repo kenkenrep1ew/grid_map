@@ -8,8 +8,12 @@ import 'package:latlong/latlong.dart';
 class MyPoint {
   String point;
 
+  Paint paint;
+
   MyPoint(String point) {
     this.point = point;
+    this.paint = Paint();
+    this.paint.color = Colors.red;
   }
 
   LatLng getLatLng() {
@@ -33,8 +37,6 @@ class MyPoint {
   }
 
   void draw(Canvas canvas, MapState mapState, Size size) {
-    Paint p = Paint();
-    p.color = Colors.red;
-    canvas.drawCircle(getPixelPosition(mapState), 3.0, p);
+    canvas.drawCircle(getPixelPosition(mapState), 3.0, paint);
   }
 }
