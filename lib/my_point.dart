@@ -6,20 +6,23 @@ import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong/latlong.dart';
 
 class MyPoint {
-  String point;
+  double _lon;
+  double _lat;
 
-  Paint paint;
+  Paint paint = Paint();
 
   MyPoint(String point) {
-    this.point = point;
-    this.paint = Paint();
-    this.paint.color = Colors.red;
+    this._lon = jsonDecode(point)["geometry"]["coordinates"][0];
+    this._lat = jsonDecode(point)["geometry"]["coordinates"][1];
+  }
+
+  MyPoint.fromDouble(double latitude, double longitude) {
+    this._lat = latitude;
+    this._lon = longitude;
   }
 
   LatLng getLatLng() {
-    double lon = jsonDecode(point)["geometry"]["coordinates"][0];
-    double lat = jsonDecode(point)["geometry"]["coordinates"][1];
-    return LatLng(lat, lon);
+    return LatLng(_lat, _lon);
   }
 
   CustomPoint getCustomPoint(MapState mapState) {

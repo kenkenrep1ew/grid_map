@@ -49,6 +49,22 @@ class UtmZone {
     canvas.drawLine(pixelTop, pixelBottom, p);
   }
 
+  void drawFrameOfUtmZone(Canvas canvas, MapState mapState) {
+    for (int i = 0; i < latBands.length; i++) {
+      LatBand lb = latBands[i];
+      MyPoint bottomLeft = MyPoint.fromDouble(lb.southBound, westBound);
+      MyPoint bottomRight = MyPoint.fromDouble(lb.southBound, eastBound);
+      MyPoint topLeft = MyPoint.fromDouble(lb.northBound, westBound);
+      MyPoint topRight = MyPoint.fromDouble(lb.northBound, eastBound);
+
+      p.strokeWidth = 2.0;
+      drawGeojsonLine(canvas, mapState, bottomLeft, bottomRight);
+      drawGeojsonLine(canvas, mapState, bottomLeft, topLeft);
+      drawGeojsonLine(canvas, mapState, topLeft, topRight);
+      drawGeojsonLine(canvas, mapState, bottomRight, topRight);
+    }
+  }
+
   void drawCenterLine(Canvas canvas, MapState mapState, Size size) {
     p.strokeWidth = 0.5;
     double pixelPosCenter =

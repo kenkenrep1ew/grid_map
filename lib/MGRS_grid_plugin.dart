@@ -55,51 +55,43 @@ class _MyPainter extends CustomPainter {
     p.color = Colors.red;
 
     UtmZone zone52 = UtmZone(52);
-    zone52.draw(canvas, mapState, size);
-    UtmZone zone53 = UtmZone(53);
-    zone53.draw(canvas, mapState, size);
-    UtmZone zone54 = UtmZone(54);
-    zone54.draw(canvas, mapState, size);
-    UtmZone zone55 = UtmZone(55);
-    zone55.draw(canvas, mapState, size);
-
-    LatBand bandR = LatBand('R');
-    bandR.draw(canvas, mapState, size);
-    LatBand bandS = LatBand('S');
-    bandS.draw(canvas, mapState, size);
-    LatBand bandT = LatBand('T');
-    bandT.draw(canvas, mapState, size);
-    LatBand bandU = LatBand('U');
-    bandU.draw(canvas, mapState, size);
-
+    zone52.latBands = [
+      LatBand('R'),
+      LatBand('S'),
+    ];
     zone52.standardPoints = pointsInZone52;
-    zone52.drawFrameByStandardPoints(canvas, mapState, size);
 
+    UtmZone zone53 = UtmZone(53);
+    zone53.latBands = [
+      LatBand('S'),
+    ];
     zone53.standardPoints = pointsInZone53;
-    zone53.drawFrameByStandardPoints(canvas, mapState, size);
 
+    UtmZone zone54 = UtmZone(54);
+    zone54.latBands = [
+      LatBand('S'),
+      LatBand('T'),
+    ];
     zone54.standardPoints = pointsInZone54;
-    zone54.drawFrameByStandardPoints(canvas, mapState, size);
 
-    print(mapState.zoom);
+    print(mapState.center);
+    zone52.drawFrameOfUtmZone(canvas, mapState);
+    zone53.drawFrameOfUtmZone(canvas, mapState);
+    zone54.drawFrameOfUtmZone(canvas, mapState);
 
-    // p3 p4
-    //
-    // p1 p2
+    if (zone52.westBound < mapState.center.longitude &&
+        mapState.center.longitude < zone52.eastBound) {
+      zone52.drawFrameByStandardPoints(canvas, mapState, size);
+    }
 
-    // MyPoint p1 = MyPoint(PT_53SMS);
-    // p1.draw(canvas, mapState, size);
-    //
-    // MyPoint p2 = MyPoint(PT_53SNS);
-    // p2.draw(canvas, mapState, size);
-    //
-    // MyPoint p3 = MyPoint(PT_53SMT);
-    // p3.draw(canvas, mapState, size);
-    //
-    // MyPoint p4 = MyPoint(PT_53SNT);
-    // p4.draw(canvas, mapState, size);
-
-    // print("p1:$p1 p2:$p2");
+    if (zone53.westBound < mapState.center.longitude &&
+        mapState.center.longitude < zone53.eastBound) {
+      zone53.drawFrameByStandardPoints(canvas, mapState, size);
+    }
+    if (zone54.westBound < mapState.center.longitude &&
+        mapState.center.longitude < zone54.eastBound) {
+      zone54.drawFrameByStandardPoints(canvas, mapState, size);
+    }
   }
 
   @override
