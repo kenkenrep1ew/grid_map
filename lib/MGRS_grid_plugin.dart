@@ -74,7 +74,6 @@ class _MyPainter extends CustomPainter {
     ];
     zone54.standardPoints = pointsInZone54;
 
-    print(mapState.center);
     zone52.drawFrameOfUtmZone(canvas, mapState);
     zone53.drawFrameOfUtmZone(canvas, mapState);
     zone54.drawFrameOfUtmZone(canvas, mapState);
@@ -87,11 +86,24 @@ class _MyPainter extends CustomPainter {
     if (zone53.westBound < mapState.center.longitude &&
         mapState.center.longitude < zone53.eastBound) {
       zone53.drawFrameByStandardPoints(canvas, mapState, size);
+      int k = zone53.standardPoints.lastIndexWhere((element) =>
+          element.first.getLongitude() < mapState.center.longitude);
+      int l = zone53.standardPoints[0].lastIndexWhere(
+          (element) => element.getLatitude() < mapState.center.latitude);
+      if (k > 0 && l > 0) {
+        zone53.drawGeojsonLine(canvas, mapState, zone53.standardPoints[k][l],
+            zone53.standardPoints[k + 1][l]);
+        // drawGeojsonLine(canvas, mapState, bottomLeft, topLeft);
+        // drawGeojsonLine(canvas, mapState, topLeft, topRight);
+        // drawGeojsonLine(canvas, mapState, bottomRight, topRight);
+      }
     }
     if (zone54.westBound < mapState.center.longitude &&
         mapState.center.longitude < zone54.eastBound) {
       zone54.drawFrameByStandardPoints(canvas, mapState, size);
     }
+
+    print("${mapState.center} ${mapState.zoom}");
   }
 
   @override

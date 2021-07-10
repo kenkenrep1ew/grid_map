@@ -21,6 +21,14 @@ class MyPoint {
     this._lon = longitude;
   }
 
+  double getLatitude() {
+    return _lat;
+  }
+
+  double getLongitude() {
+    return _lon;
+  }
+
   LatLng getLatLng() {
     return LatLng(_lat, _lon);
   }

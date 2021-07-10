@@ -78,7 +78,7 @@ class UtmZone {
   void drawFrameByStandardPoints(Canvas canvas, MapState mapState, Size size) {
     for (int i = 0; i < standardPoints.length - 1; i++) {
       for (int j = 0; j < standardPoints[i].length - 1; j++) {
-        // standardPoints[i][j].draw(canvas, mapState, size);
+        standardPoints[i][j].draw(canvas, mapState, size);
         drawGeojsonSquare(
             canvas,
             mapState,
