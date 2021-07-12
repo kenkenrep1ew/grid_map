@@ -80,27 +80,61 @@ class _MyPainter extends CustomPainter {
 
     if (zone52.westBound < mapState.center.longitude &&
         mapState.center.longitude < zone52.eastBound) {
-      zone52.drawFrameByStandardPoints(canvas, mapState, size);
+      zone52.drawFrameWithAllStandardPoints(canvas, mapState, size);
     }
 
     if (zone53.westBound < mapState.center.longitude &&
         mapState.center.longitude < zone53.eastBound) {
-      zone53.drawFrameByStandardPoints(canvas, mapState, size);
+      zone53.drawFrameWithAllStandardPoints(canvas, mapState, size);
       int k = zone53.standardPoints.lastIndexWhere((element) =>
           element.first.getLongitude() < mapState.center.longitude);
       int l = zone53.standardPoints[0].lastIndexWhere(
           (element) => element.getLatitude() < mapState.center.latitude);
-      if (k > 0 && l > 0) {
-        zone53.drawGeojsonLine(canvas, mapState, zone53.standardPoints[k][l],
-            zone53.standardPoints[k + 1][l]);
-        // drawGeojsonLine(canvas, mapState, bottomLeft, topLeft);
-        // drawGeojsonLine(canvas, mapState, topLeft, topRight);
-        // drawGeojsonLine(canvas, mapState, bottomRight, topRight);
+      if (k >= 0 && l >= 0) {
+        zone53.drawGeojsonGrid(
+            canvas,
+            mapState,
+            zone53.standardPoints[k][l],
+            zone53.standardPoints[k][l + 1],
+            zone53.standardPoints[k + 1][l],
+            zone53.standardPoints[k + 1][l + 1]);
+        zone53.drawGeojsonGrid(
+            canvas,
+            mapState,
+            zone53.standardPoints[k][l + 1],
+            zone53.standardPoints[k][l + 1 + 1],
+            zone53.standardPoints[k + 1][l + 1],
+            zone53.standardPoints[k + 1][l + 1 + 1]);
+        // zone53.drawGeojsonSquareByStandardPoint(canvas, mapState, k, l + 1);
+        zone53.drawGeojsonGrid(
+            canvas,
+            mapState,
+            zone53.standardPoints[k + 1][l],
+            zone53.standardPoints[k + 1][l + 1],
+            zone53.standardPoints[k + 1 + 1][l],
+            zone53.standardPoints[k + 1 + 1][l + 1]);
+        // zone53.drawGeojsonSquareByStandardPoint(canvas, mapState, k + 1, l);
+        zone53.drawGeojsonGrid(
+            canvas,
+            mapState,
+            zone53.standardPoints[k + 1][l + 1],
+            zone53.standardPoints[k + 1][l + 1 + 1],
+            zone53.standardPoints[k + 1 + 1][l + 1],
+            zone53.standardPoints[k + 1 + 1][l + 1 + 1]);
+        // zone53.drawGeojsonSquareByStandardPoint(canvas, mapState, k + 1, l + 1);
+      } else if (l < 0) {
+        zone53.drawGeojsonSquareByStandardPoint(canvas, mapState, k, l + 1);
+        zone53.drawGeojsonSquareByStandardPoint(canvas, mapState, k + 1, l + 1);
+      } else if (k < 0) {
+        zone53.drawGeojsonSquareByStandardPoint(canvas, mapState, k + 1, l);
+        zone53.drawGeojsonSquareByStandardPoint(canvas, mapState, k + 1, l + 1);
+      } else {
+        print("$k,$l");
       }
     }
     if (zone54.westBound < mapState.center.longitude &&
         mapState.center.longitude < zone54.eastBound) {
-      zone54.drawFrameByStandardPoints(canvas, mapState, size);
+      zone54.drawFrameWithAllStandardPoints(canvas, mapState, size);
     }
 
     print("${mapState.center} ${mapState.zoom}");

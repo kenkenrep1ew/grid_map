@@ -75,17 +75,20 @@ class UtmZone {
     canvas.drawLine(pixelTop, pixelBottom, p);
   }
 
-  void drawFrameByStandardPoints(Canvas canvas, MapState mapState, Size size) {
+  void drawFrameWithAllStandardPoints(
+      Canvas canvas, MapState mapState, Size size) {
     for (int i = 0; i < standardPoints.length - 1; i++) {
       for (int j = 0; j < standardPoints[i].length - 1; j++) {
         standardPoints[i][j].draw(canvas, mapState, size);
-        drawGeojsonSquare(
-            canvas,
-            mapState,
-            standardPoints[i][j],
-            standardPoints[i + 1][j],
-            standardPoints[i][j + 1],
-            standardPoints[i + 1][j + 1]);
+        if (5.0 < mapState.zoom) {
+          drawGeojsonSquare(
+              canvas,
+              mapState,
+              standardPoints[i][j],
+              standardPoints[i + 1][j],
+              standardPoints[i][j + 1],
+              standardPoints[i + 1][j + 1]);
+        }
       }
     }
   }
@@ -97,73 +100,84 @@ class UtmZone {
         endPoint.getPixelPosition(mapState), p);
   }
 
-  //
   void drawGeojsonSquare(Canvas canvas, MapState mapState, MyPoint bottomLeft,
       MyPoint bottomRight, MyPoint topLeft, MyPoint topRight) {
+    drawGeojsonLine(canvas, mapState, bottomLeft, bottomRight);
+    drawGeojsonLine(canvas, mapState, bottomLeft, topLeft);
+    drawGeojsonLine(canvas, mapState, topLeft, topRight);
+    drawGeojsonLine(canvas, mapState, bottomRight, topRight);
+  }
+
+  void drawGeojsonSquareByStandardPoint(
+      Canvas canvas, MapState mapState, int k, int l) {
+    drawGeojsonLine(
+        canvas, mapState, standardPoints[k][l], standardPoints[k + 1][l]);
+    drawGeojsonLine(
+        canvas, mapState, standardPoints[k][l], standardPoints[k][l + 1]);
+    drawGeojsonLine(canvas, mapState, standardPoints[k][l + 1],
+        standardPoints[k + 1][l + 1]);
+    drawGeojsonLine(canvas, mapState, standardPoints[k + 1][l],
+        standardPoints[k + 1][l + 1]);
+  }
+
+  //
+  void drawGeojsonGrid(Canvas canvas, MapState mapState, MyPoint bottomLeft,
+      MyPoint bottomRight, MyPoint topLeft, MyPoint topRight) {
     p.strokeWidth = 0.5;
-    //
-    if (5.0 < mapState.zoom) {
-      drawGeojsonLine(canvas, mapState, bottomLeft, bottomRight);
-      drawGeojsonLine(canvas, mapState, bottomLeft, topLeft);
-      drawGeojsonLine(canvas, mapState, topLeft, topRight);
-      drawGeojsonLine(canvas, mapState, bottomRight, topRight);
-      if (8.0 < mapState.zoom) {
-        for (int i = 1; i < 10; i++) {
-          Offset bottom = Offset(
-              (bottomLeft.getPixelPosition(mapState).dx +
-                  (bottomRight.getPixelPosition(mapState).dx -
-                          bottomLeft.getPixelPosition(mapState).dx) *
-                      i /
-                      10),
-              (bottomLeft.getPixelPosition(mapState).dy +
-                  (bottomRight.getPixelPosition(mapState).dy -
-                          bottomLeft.getPixelPosition(mapState).dy) *
-                      i /
-                      10));
-          // canvas.drawCircle(bottom, 3.0, p);
+    for (int i = 1; i < 100; i++) {
+      Offset bottom = Offset(
+          (bottomLeft.getPixelPosition(mapState).dx +
+              (bottomRight.getPixelPosition(mapState).dx -
+                      bottomLeft.getPixelPosition(mapState).dx) *
+                  i /
+                  100),
+          (bottomLeft.getPixelPosition(mapState).dy +
+              (bottomRight.getPixelPosition(mapState).dy -
+                      bottomLeft.getPixelPosition(mapState).dy) *
+                  i /
+                  100));
+      // canvas.drawCircle(bottom, 3.0, p);
 
-          Offset top = Offset(
-              (topLeft.getPixelPosition(mapState).dx +
-                  (topRight.getPixelPosition(mapState).dx -
-                          topLeft.getPixelPosition(mapState).dx) *
-                      i /
-                      10),
-              (topLeft.getPixelPosition(mapState).dy +
-                  (topRight.getPixelPosition(mapState).dy -
-                          topLeft.getPixelPosition(mapState).dy) *
-                      i /
-                      10));
-          // canvas.drawCircle(top, 3.0, p);
-          canvas.drawLine(top, bottom, p);
+      Offset top = Offset(
+          (topLeft.getPixelPosition(mapState).dx +
+              (topRight.getPixelPosition(mapState).dx -
+                      topLeft.getPixelPosition(mapState).dx) *
+                  i /
+                  100),
+          (topLeft.getPixelPosition(mapState).dy +
+              (topRight.getPixelPosition(mapState).dy -
+                      topLeft.getPixelPosition(mapState).dy) *
+                  i /
+                  100));
+      // canvas.drawCircle(top, 3.0, p);
+      canvas.drawLine(top, bottom, p);
 
-          Offset left = Offset(
-              topLeft.getPixelPosition(mapState).dx +
-                  (bottomLeft.getPixelPosition(mapState).dx -
-                          topLeft.getPixelPosition(mapState).dx) *
-                      i /
-                      10,
-              topLeft.getPixelPosition(mapState).dy +
-                  (bottomLeft.getPixelPosition(mapState).dy -
-                          topLeft.getPixelPosition(mapState).dy) *
-                      i /
-                      10);
-          // canvas.drawCircle(left, 3.0, p);
+      Offset left = Offset(
+          topLeft.getPixelPosition(mapState).dx +
+              (bottomLeft.getPixelPosition(mapState).dx -
+                      topLeft.getPixelPosition(mapState).dx) *
+                  i /
+                  100,
+          topLeft.getPixelPosition(mapState).dy +
+              (bottomLeft.getPixelPosition(mapState).dy -
+                      topLeft.getPixelPosition(mapState).dy) *
+                  i /
+                  100);
+      // canvas.drawCircle(left, 3.0, p);
 
-          Offset right = Offset(
-              topRight.getPixelPosition(mapState).dx +
-                  (bottomRight.getPixelPosition(mapState).dx -
-                          topRight.getPixelPosition(mapState).dx) *
-                      i /
-                      10,
-              topRight.getPixelPosition(mapState).dy +
-                  (bottomRight.getPixelPosition(mapState).dy -
-                          topRight.getPixelPosition(mapState).dy) *
-                      i /
-                      10);
-          // canvas.drawCircle(right, 3.0, p);
-          canvas.drawLine(left, right, p);
-        }
-      }
+      Offset right = Offset(
+          topRight.getPixelPosition(mapState).dx +
+              (bottomRight.getPixelPosition(mapState).dx -
+                      topRight.getPixelPosition(mapState).dx) *
+                  i /
+                  100,
+          topRight.getPixelPosition(mapState).dy +
+              (bottomRight.getPixelPosition(mapState).dy -
+                      topRight.getPixelPosition(mapState).dy) *
+                  i /
+                  100);
+      // canvas.drawCircle(right, 3.0, p);
+      canvas.drawLine(left, right, p);
     }
   }
 }
