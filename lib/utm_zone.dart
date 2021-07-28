@@ -49,7 +49,7 @@ class UtmZone {
     canvas.drawLine(pixelTop, pixelBottom, p);
   }
 
-  void drawFrameOfUtmZone(Canvas canvas, MapState mapState) {
+  void drawOuterFrameOfUtmZone(Canvas canvas, MapState mapState) {
     for (int i = 0; i < latBands.length; i++) {
       LatBand lb = latBands[i];
       MyPoint bottomLeft = MyPoint.fromDouble(lb.southBound, westBound);
@@ -75,11 +75,11 @@ class UtmZone {
     canvas.drawLine(pixelTop, pixelBottom, p);
   }
 
-  void drawFrameWithAllStandardPoints(
+  void draw100kmFramesWithAllStandardPoints(
       Canvas canvas, MapState mapState, Size size) {
     for (int i = 0; i < standardPoints.length - 1; i++) {
       for (int j = 0; j < standardPoints[i].length - 1; j++) {
-        standardPoints[i][j].draw(canvas, mapState, size);
+        // standardPoints[i][j].draw(canvas, mapState, size);
         if (5.0 < mapState.zoom) {
           drawGeojsonSquare(
               canvas,
@@ -121,8 +121,13 @@ class UtmZone {
   }
 
   //
-  void drawGeojsonGrid(Canvas canvas, MapState mapState, MyPoint bottomLeft,
-      MyPoint bottomRight, MyPoint topLeft, MyPoint topRight) {
+  void draw1kmGridIn100kmArea(
+      Canvas canvas,
+      MapState mapState,
+      MyPoint bottomLeft,
+      MyPoint bottomRight,
+      MyPoint topLeft,
+      MyPoint topRight) {
     p.strokeWidth = 0.5;
     for (int i = 1; i < 100; i++) {
       Offset bottom = Offset(
