@@ -128,22 +128,48 @@ class _MGRSGridPainter extends CustomPainter {
 
     print("${mapState.center} ${mapState.zoom}");
 
-    const span = TextSpan(
-      style: TextStyle(
-        color: Colors.red,
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-      text: '00',
-    );
     final textPainter = TextPainter(
-      text: span,
-      textAlign: TextAlign.left,
+      text: TextSpan(
+        style: TextStyle(
+          color: Colors.red,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          backgroundColor: Colors.black,
+        ),
+        text: '00',
+      ),
+      textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
     );
+
     textPainter.layout();
-    textPainter.paint(
-        canvas, zone53.standardPoints[1][1].getPixelPosition(mapState));
+
+    Offset a = zone53.standardPoints[1][1].getPixelPosition(mapState);
+    zone53.standardPoints[1][1].draw(canvas, mapState, size);
+    Offset b = zone53.standardPoints[1][2].getPixelPosition(mapState);
+    zone53.standardPoints[1][2].draw(canvas, mapState, size);
+
+    double p_x = (b.dx - a.dx) * (100.0 - a.dy) / (b.dy - a.dy) + a.dx;
+    print(p_x);
+    canvas.drawCircle(Offset(p_x, 100.0), 5.0, p);
+
+    // double labelPosX =
+    //     zone53.standardPoints[1][1].getPixelPosition(mapState).dx;
+    // print(labelPosX);
+
+    double labelPosY = 40.0;
+    double labelPosX =
+        (b.dx - a.dx) * (labelPosY - a.dy) / (b.dy - a.dy) + a.dx - 10.0;
+    // print(labelPosX);
+    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
+
+    labelPosX = zone53.standardPoints[1][1].getPixelPosition(mapState).dx -
+        mapState.zoom;
+    labelPosY = size.height - 40.0;
+    labelPosX =
+        (b.dx - a.dx) * (labelPosY - a.dy) / (b.dy - a.dy) + a.dx - 10.0;
+    // print(labelPosX);
+    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
   }
 
   @override
