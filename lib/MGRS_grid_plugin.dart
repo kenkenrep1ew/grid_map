@@ -170,6 +170,16 @@ class _MGRSGridPainter extends CustomPainter {
         (b.dx - a.dx) * (labelPosY - a.dy) / (b.dy - a.dy) + a.dx - 10.0;
     // print(labelPosX);
     textPainter.paint(canvas, Offset(labelPosX, labelPosY));
+
+    b = zone53.standardPoints[2][1].getPixelPosition(mapState);
+
+    labelPosX = 20.0;
+    labelPosY = (b.dy - a.dy) * (labelPosX - a.dx) / (b.dx - a.dx) + a.dy - 5.0;
+    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
+
+    labelPosX = size.width - 40.0;
+    labelPosY = (b.dy - a.dy) * (labelPosX - a.dx) / (b.dx - a.dx) + a.dy - 5.0;
+    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
   }
 
   @override
