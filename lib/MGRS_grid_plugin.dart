@@ -128,64 +128,114 @@ class _MGRSGridPainter extends CustomPainter {
 
     print("${mapState.center} ${mapState.zoom}");
 
+    TextPainter textPainter = getLabelPainter("00");
+    textPainter.layout();
+
+    Offset bottomLeft = zone53.standardPoints[1][1].getPixelPosition(mapState);
+    zone53.standardPoints[1][1].draw(canvas, mapState, size);
+    Offset topLeft = zone53.standardPoints[1][2].getPixelPosition(mapState);
+    zone53.standardPoints[1][2].draw(canvas, mapState, size);
+
+    drawVerticalLabel(canvas, size, bottomLeft, topLeft, textPainter);
+
+    Offset bottomRight = zone53.standardPoints[2][1].getPixelPosition(mapState);
+    zone53.standardPoints[2][1].draw(canvas, mapState, size);
+
+    drawHorizontalLabel(canvas, size, bottomLeft, bottomRight, textPainter);
+
+    Offset topRight = zone53.standardPoints[2][2].getPixelPosition(mapState);
+
+    // drawLabelsFor1kmGrid(bottomLeft, bottomRight, topLeft, topRight, canvas, p, size);
+  }
+
+  void drawLabelsFor1kmGrid(Offset bottomLeft, Offset bottomRight,
+      Offset topLeft, Offset topRight, Canvas canvas, Paint p, Size size) {
+    for (int i = 1; i < 100; i++) {
+      Offset bottom = Offset(
+          (bottomLeft.dx + (bottomRight.dx - bottomLeft.dx) * i / 100),
+          (bottomLeft.dy + (bottomRight.dy - bottomLeft.dy) * i / 100));
+
+      Offset top = Offset((topLeft.dx + (topRight.dx - topLeft.dx) * i / 100),
+          (topLeft.dy + (topRight.dy - topLeft.dy) * i / 100));
+      canvas.drawLine(top, bottom, p);
+
+      Offset left = Offset(
+          bottomLeft.dx - (bottomLeft.dx - topLeft.dx) * i / 100,
+          bottomLeft.dy - (bottomLeft.dy - topLeft.dy) * i / 100);
+
+      Offset right = Offset(
+          bottomRight.dx - (bottomRight.dx - topRight.dx) * i / 100,
+          bottomRight.dy - (bottomRight.dy - topRight.dy) * i / 100);
+      canvas.drawLine(left, right, p);
+
+      String label;
+      if (i < 10) {
+        label = "0" + i.toString();
+      } else {
+        label = i.toString();
+      }
+      TextPainter textPainter = getLabelPainter(label);
+      textPainter.layout();
+      drawVerticalLabel(canvas, size, top, bottom, textPainter);
+      drawHorizontalLabel(canvas, size, left, right, textPainter);
+    }
+  }
+
+  TextPainter getLabelPainter(String s) {
     final textPainter = TextPainter(
       text: TextSpan(
         style: TextStyle(
-          color: Colors.red,
+          color: Colors.black54,
           fontSize: 16,
           fontWeight: FontWeight.bold,
-          backgroundColor: Colors.black,
+          // backgroundColor: Colors.black,
         ),
-        text: '00',
+        text: s,
       ),
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
     );
-
-    textPainter.layout();
-
-    Offset a = zone53.standardPoints[1][1].getPixelPosition(mapState);
-    zone53.standardPoints[1][1].draw(canvas, mapState, size);
-    Offset b = zone53.standardPoints[1][2].getPixelPosition(mapState);
-    zone53.standardPoints[1][2].draw(canvas, mapState, size);
-
-    double p_x = (b.dx - a.dx) * (100.0 - a.dy) / (b.dy - a.dy) + a.dx;
-    print(p_x);
-    canvas.drawCircle(Offset(p_x, 100.0), 5.0, p);
-
-    // double labelPosX =
-    //     zone53.standardPoints[1][1].getPixelPosition(mapState).dx;
-    // print(labelPosX);
-
-    double labelPosY = 40.0;
-    double labelPosX =
-        (b.dx - a.dx) * (labelPosY - a.dy) / (b.dy - a.dy) + a.dx - 10.0;
-    // print(labelPosX);
-    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
-
-    labelPosX = zone53.standardPoints[1][1].getPixelPosition(mapState).dx -
-        mapState.zoom;
-    labelPosY = size.height - 40.0;
-    labelPosX =
-        (b.dx - a.dx) * (labelPosY - a.dy) / (b.dy - a.dy) + a.dx - 10.0;
-    // print(labelPosX);
-    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
-
-    b = zone53.standardPoints[2][1].getPixelPosition(mapState);
-
-    labelPosX = 20.0;
-    labelPosY = (b.dy - a.dy) * (labelPosX - a.dx) / (b.dx - a.dx) + a.dy - 5.0;
-    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
-
-    labelPosX = size.width - 40.0;
-    labelPosY = (b.dy - a.dy) * (labelPosX - a.dx) / (b.dx - a.dx) + a.dy - 5.0;
-    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
+    return textPainter;
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     return false;
     // throw UnimplementedError();
+  }
+
+  void drawVerticalLabel(
+      Canvas canvas, Size size, Offset a, Offset b, TextPainter textPainter) {
+    //Draw the Upper label of vertical grid
+    double labelPosY;
+    double labelPosX;
+
+    labelPosY = 40.0;
+    labelPosX =
+        (b.dx - a.dx) * (labelPosY - a.dy) / (b.dy - a.dy) + a.dx - 10.0;
+    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
+
+    //Draw the Lower label of vertical grid
+    labelPosY = size.height - 40.0;
+    labelPosX =
+        (b.dx - a.dx) * (labelPosY - a.dy) / (b.dy - a.dy) + a.dx - 10.0;
+    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
+  }
+
+  void drawHorizontalLabel(
+      Canvas canvas, Size size, Offset a, Offset b, TextPainter textPainter) {
+    double labelPosY;
+    double labelPosX;
+
+    //Draw the Left label of horizontal grid
+    labelPosX = 20.0;
+    labelPosY = (b.dy - a.dy) * (labelPosX - a.dx) / (b.dx - a.dx) + a.dy - 5.0;
+    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
+
+    //Draw the Right label of horizontal grid
+    labelPosX = size.width - 40.0;
+    labelPosY = (b.dy - a.dy) * (labelPosX - a.dx) / (b.dx - a.dx) + a.dy - 5.0;
+    textPainter.paint(canvas, Offset(labelPosX, labelPosY));
   }
 
   void drawText(Canvas canvas, double degree, int digits, double posx,
