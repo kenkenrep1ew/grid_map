@@ -75,6 +75,9 @@ class _MGRSGridPainter extends CustomPainter {
     ];
     zone54.standardPoints = pointsInZone54;
 
+    //For default;
+    UtmZone nowInZone = zone53;
+
     zone52.drawOuterFrameOfUtmZone(canvas, mapState);
     zone53.drawOuterFrameOfUtmZone(canvas, mapState);
     zone54.drawOuterFrameOfUtmZone(canvas, mapState);
@@ -82,182 +85,184 @@ class _MGRSGridPainter extends CustomPainter {
     if (zone52.westBound < mapState.center.longitude &&
         mapState.center.longitude < zone52.eastBound) {
       zone52.draw100kmFramesWithAllStandardPoints(canvas, mapState, size);
+      nowInZone = zone52;
     }
 
     if (zone53.westBound < mapState.center.longitude &&
         mapState.center.longitude < zone53.eastBound) {
       zone53.draw100kmFramesWithAllStandardPoints(canvas, mapState, size);
+      nowInZone = zone53;
     }
     if (zone54.westBound < mapState.center.longitude &&
         mapState.center.longitude < zone54.eastBound) {
       zone54.draw100kmFramesWithAllStandardPoints(canvas, mapState, size);
+      nowInZone = zone54;
     }
 
-    print("${mapState.center} ${mapState.zoom}");
+    // print("${mapState.bounds.west}");
+    final index_h = nowInZone.standardPoints
+        .indexWhere((item) => mapState.bounds.west < item[0].getLongitude());
+    final index_v = nowInZone.standardPoints[index_h]
+        .indexWhere((item) => mapState.bounds.south < item.getLatitude());
+    List<Offset> corners;
 
-    Offset bottomLeft = zone53.standardPoints[1][1].getPixelPosition(mapState);
-    Offset topLeft = zone53.standardPoints[1][2].getPixelPosition(mapState);
-    Offset bottomRight = zone53.standardPoints[2][1].getPixelPosition(mapState);
-    Offset topRight = zone53.standardPoints[2][2].getPixelPosition(mapState);
+    final length_h = nowInZone.standardPoints.length;
+    final length_v = nowInZone.standardPoints[0].length;
+    if (9 < mapState.zoom) {
+      if ((0 < index_h && index_h < length_h) &&
+          (0 < index_v && index_v < length_v)) {
+        if (nowInZone.standardPoints[index_h][0].getLongitude() <
+            mapState.bounds.east) {
+          if (nowInZone.standardPoints[index_h][index_v].getLatitude() <
+              mapState.bounds.north) {
+            print("4ko");
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h + 1, index_v, mapState);
+            drawGridAndLabel(corners, canvas, p, size,
+                withHorizontalLabel: false);
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h, index_v + 1, mapState);
+            drawGridAndLabel(corners, canvas, p, size,
+                withVerticalLabel: false);
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h + 1, index_v + 1, mapState);
+            drawGridAndLabel(corners, canvas, p, size,
+                withVerticalLabel: false, withHorizontalLabel: false);
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h, index_v, mapState);
+            drawGridAndLabel(corners, canvas, p, size);
+          } else {
+            print("yoko2ko");
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h + 1, index_v, mapState);
+            drawGridAndLabel(corners, canvas, p, size,
+                withHorizontalLabel: false);
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h, index_v, mapState);
+            drawGridAndLabel(corners, canvas, p, size);
+          }
+        } else {
+          if (nowInZone.standardPoints[index_h][index_v].getLatitude() <
+              mapState.bounds.north) {
+            print("tate2ko");
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h, index_v + 1, mapState);
+            drawGridAndLabel(corners, canvas, p, size,
+                withVerticalLabel: false);
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h, index_v, mapState);
+            drawGridAndLabel(corners, canvas, p, size);
+          } else {
+            print("1ko");
+            corners = get4Corner(
+                nowInZone.standardPoints, index_h, index_v, mapState);
+            drawGridAndLabel(corners, canvas, p, size);
+          }
+        }
+      }
+    }
+  }
 
-    if (8 < mapState.zoom && mapState.zoom < 10) {
-      drawLabelsFor10kmGrid(
-          bottomLeft, bottomRight, topLeft, topRight, canvas, p, size);
-    } else if (10 <= mapState.zoom && mapState.zoom < 12) {
-      drawLabelsFor5kmGrid(
-          bottomLeft, bottomRight, topLeft, topRight, canvas, p, size);
+  void drawGridAndLabel(List<Offset> corners, Canvas canvas, Paint p, Size size,
+      {bool withVerticalLabel = true, bool withHorizontalLabel = true}) {
+    if (9 < mapState.zoom && mapState.zoom <= 10) {
+      drawLabelsForVkmGrid(10, corners, canvas, p, size,
+          withVerticalLabel: withVerticalLabel,
+          withHorizontalLabel: withHorizontalLabel);
+    } else if (11 <= mapState.zoom && mapState.zoom < 12) {
+      drawLabelsForVkmGrid(5, corners, canvas, p, size,
+          withVerticalLabel: withVerticalLabel,
+          withHorizontalLabel: withHorizontalLabel);
     } else if (12 <= mapState.zoom && mapState.zoom < 13) {
-      drawLabelsFor2kmGrid(
-          bottomLeft, bottomRight, topLeft, topRight, canvas, p, size);
+      drawLabelsForVkmGrid(2, corners, canvas, p, size,
+          withVerticalLabel: withVerticalLabel,
+          withHorizontalLabel: withHorizontalLabel);
     } else if (13 <= mapState.zoom) {
-      drawLabelsFor1kmGrid(
-          bottomLeft, bottomRight, topLeft, topRight, canvas, p, size);
+      drawLabelsForVkmGrid(1, corners, canvas, p, size,
+          withVerticalLabel: withVerticalLabel,
+          withHorizontalLabel: withHorizontalLabel);
     }
   }
 
-  void drawLabelsFor10kmGrid(Offset bottomLeft, Offset bottomRight,
-      Offset topLeft, Offset topRight, Canvas canvas, Paint p, Size size) {
+  List<Offset> get4Corner(
+      List<List<MyPoint>> sp, int index_h, int index_v, MapState mapState) {
+    Offset bottomLeft = sp[index_h - 1][index_v - 1].getPixelPosition(mapState);
+    Offset bottomRight = sp[index_h][index_v - 1].getPixelPosition(mapState);
+    Offset topLeft = sp[index_h - 1][index_v].getPixelPosition(mapState);
+    Offset topRight = sp[index_h][index_v].getPixelPosition(mapState);
+    return [bottomLeft, bottomRight, topLeft, topRight];
+  }
+
+  void drawLabelsForVkmGrid(
+      int gridSpace, List<Offset> corners, Canvas canvas, Paint p, Size size,
+      {bool withVerticalLabel = true, bool withHorizontalLabel = true}) {
+    Offset bottomLeft = corners[0];
+    Offset bottomRight = corners[1];
+    Offset topLeft = corners[2];
+    Offset topRight = corners[3];
+    double numberOfGrid = 100 / gridSpace;
     TextPainter textPainter = getLabelPainter("00");
     textPainter.layout();
     drawVerticalLabel(canvas, size, bottomLeft, topLeft, textPainter);
     drawHorizontalLabel(canvas, size, bottomLeft, bottomRight, textPainter);
-    for (int i = 1; i < 10; i++) {
+    for (int i = 1; i < numberOfGrid; i++) {
       Offset bottom = Offset(
-          (bottomLeft.dx + (bottomRight.dx - bottomLeft.dx) * i / 10),
-          (bottomLeft.dy + (bottomRight.dy - bottomLeft.dy) * i / 10));
+          (bottomLeft.dx + (bottomRight.dx - bottomLeft.dx) * i / numberOfGrid),
+          (bottomLeft.dy +
+              (bottomRight.dy - bottomLeft.dy) * i / numberOfGrid));
 
-      Offset top = Offset((topLeft.dx + (topRight.dx - topLeft.dx) * i / 10),
-          (topLeft.dy + (topRight.dy - topLeft.dy) * i / 10));
+      Offset top = Offset(
+          (topLeft.dx + (topRight.dx - topLeft.dx) * i / numberOfGrid),
+          (topLeft.dy + (topRight.dy - topLeft.dy) * i / numberOfGrid));
       canvas.drawLine(top, bottom, p);
 
       Offset left = Offset(
-          bottomLeft.dx - (bottomLeft.dx - topLeft.dx) * i / 10,
-          bottomLeft.dy - (bottomLeft.dy - topLeft.dy) * i / 10);
+          bottomLeft.dx - (bottomLeft.dx - topLeft.dx) * i / numberOfGrid,
+          bottomLeft.dy - (bottomLeft.dy - topLeft.dy) * i / numberOfGrid);
 
       Offset right = Offset(
-          bottomRight.dx - (bottomRight.dx - topRight.dx) * i / 10,
-          bottomRight.dy - (bottomRight.dy - topRight.dy) * i / 10);
+          bottomRight.dx - (bottomRight.dx - topRight.dx) * i / numberOfGrid,
+          bottomRight.dy - (bottomRight.dy - topRight.dy) * i / numberOfGrid);
       canvas.drawLine(left, right, p);
 
       String label;
-
-      label = i.toString() + "0";
-
-      TextPainter textPainter = getLabelPainter(label);
-      textPainter.layout();
-      drawVerticalLabel(canvas, size, top, bottom, textPainter);
-      drawHorizontalLabel(canvas, size, left, right, textPainter);
-    }
-  }
-
-  void drawLabelsFor5kmGrid(Offset bottomLeft, Offset bottomRight,
-      Offset topLeft, Offset topRight, Canvas canvas, Paint p, Size size) {
-    TextPainter textPainter = getLabelPainter("00");
-    textPainter.layout();
-    drawVerticalLabel(canvas, size, bottomLeft, topLeft, textPainter);
-    drawHorizontalLabel(canvas, size, bottomLeft, bottomRight, textPainter);
-    for (int i = 1; i < 20; i++) {
-      Offset bottom = Offset(
-          (bottomLeft.dx + (bottomRight.dx - bottomLeft.dx) * i / 20),
-          (bottomLeft.dy + (bottomRight.dy - bottomLeft.dy) * i / 20));
-
-      Offset top = Offset((topLeft.dx + (topRight.dx - topLeft.dx) * i / 20),
-          (topLeft.dy + (topRight.dy - topLeft.dy) * i / 20));
-      canvas.drawLine(top, bottom, p);
-
-      Offset left = Offset(
-          bottomLeft.dx - (bottomLeft.dx - topLeft.dx) * i / 20,
-          bottomLeft.dy - (bottomLeft.dy - topLeft.dy) * i / 20);
-
-      Offset right = Offset(
-          bottomRight.dx - (bottomRight.dx - topRight.dx) * i / 20,
-          bottomRight.dy - (bottomRight.dy - topRight.dy) * i / 20);
-      canvas.drawLine(left, right, p);
-
-      String label;
-      if (i * 5 < 10) {
-        label = "0" + (i * 5).toString();
-      } else {
-        label = (i * 5).toString();
+      switch (gridSpace) {
+        case 10:
+          label = i.toString() + "0";
+          break;
+        case 5:
+          if (i * 5 < 10) {
+            label = "0" + (i * 5).toString();
+          } else {
+            label = (i * 5).toString();
+          }
+          break;
+        case 2:
+          if (i * 2 < 10) {
+            label = "0" + (i * 2).toString();
+          } else {
+            label = (i * 2).toString();
+          }
+          break;
+        case 1:
+          if (i < 10) {
+            label = "0" + i.toString();
+          } else {
+            label = i.toString();
+          }
+          break;
+        default:
+          break;
       }
+
       TextPainter textPainter = getLabelPainter(label);
       textPainter.layout();
-      drawVerticalLabel(canvas, size, top, bottom, textPainter);
-      drawHorizontalLabel(canvas, size, left, right, textPainter);
-    }
-  }
-
-  void drawLabelsFor2kmGrid(Offset bottomLeft, Offset bottomRight,
-      Offset topLeft, Offset topRight, Canvas canvas, Paint p, Size size) {
-    TextPainter textPainter = getLabelPainter("00");
-    textPainter.layout();
-    drawVerticalLabel(canvas, size, bottomLeft, topLeft, textPainter);
-    drawHorizontalLabel(canvas, size, bottomLeft, bottomRight, textPainter);
-    for (int i = 1; i < 50; i++) {
-      Offset bottom = Offset(
-          (bottomLeft.dx + (bottomRight.dx - bottomLeft.dx) * i / 50),
-          (bottomLeft.dy + (bottomRight.dy - bottomLeft.dy) * i / 50));
-
-      Offset top = Offset((topLeft.dx + (topRight.dx - topLeft.dx) * i / 50),
-          (topLeft.dy + (topRight.dy - topLeft.dy) * i / 50));
-      canvas.drawLine(top, bottom, p);
-
-      Offset left = Offset(
-          bottomLeft.dx - (bottomLeft.dx - topLeft.dx) * i / 50,
-          bottomLeft.dy - (bottomLeft.dy - topLeft.dy) * i / 50);
-
-      Offset right = Offset(
-          bottomRight.dx - (bottomRight.dx - topRight.dx) * i / 50,
-          bottomRight.dy - (bottomRight.dy - topRight.dy) * i / 50);
-      canvas.drawLine(left, right, p);
-
-      String label;
-      if (i * 2 < 10) {
-        label = "0" + (i * 2).toString();
-      } else {
-        label = (i * 2).toString();
+      if (withVerticalLabel) {
+        drawVerticalLabel(canvas, size, top, bottom, textPainter);
       }
-      TextPainter textPainter = getLabelPainter(label);
-      textPainter.layout();
-      drawVerticalLabel(canvas, size, top, bottom, textPainter);
-      drawHorizontalLabel(canvas, size, left, right, textPainter);
-    }
-  }
-
-  void drawLabelsFor1kmGrid(Offset bottomLeft, Offset bottomRight,
-      Offset topLeft, Offset topRight, Canvas canvas, Paint p, Size size) {
-    TextPainter textPainter = getLabelPainter("00");
-    textPainter.layout();
-    drawVerticalLabel(canvas, size, bottomLeft, topLeft, textPainter);
-    drawHorizontalLabel(canvas, size, bottomLeft, bottomRight, textPainter);
-    for (int i = 1; i < 100; i++) {
-      Offset bottom = Offset(
-          (bottomLeft.dx + (bottomRight.dx - bottomLeft.dx) * i / 100),
-          (bottomLeft.dy + (bottomRight.dy - bottomLeft.dy) * i / 100));
-
-      Offset top = Offset((topLeft.dx + (topRight.dx - topLeft.dx) * i / 100),
-          (topLeft.dy + (topRight.dy - topLeft.dy) * i / 100));
-      canvas.drawLine(top, bottom, p);
-
-      Offset left = Offset(
-          bottomLeft.dx - (bottomLeft.dx - topLeft.dx) * i / 100,
-          bottomLeft.dy - (bottomLeft.dy - topLeft.dy) * i / 100);
-
-      Offset right = Offset(
-          bottomRight.dx - (bottomRight.dx - topRight.dx) * i / 100,
-          bottomRight.dy - (bottomRight.dy - topRight.dy) * i / 100);
-      canvas.drawLine(left, right, p);
-
-      String label;
-      if (i < 10) {
-        label = "0" + i.toString();
-      } else {
-        label = i.toString();
+      if (withHorizontalLabel) {
+        drawHorizontalLabel(canvas, size, left, right, textPainter);
       }
-      TextPainter textPainter = getLabelPainter(label);
-      textPainter.layout();
-      drawVerticalLabel(canvas, size, top, bottom, textPainter);
-      drawHorizontalLabel(canvas, size, left, right, textPainter);
     }
   }
 
